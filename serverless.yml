@@ -1,0 +1,54 @@
+org: nundini
+
+app: aws-node-project
+service: crm-service
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-south-1
+  environment:
+    DB_HOST: database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com
+    DB_USER: admin
+    DB_PASSWORD: 09042002#Nk
+    DB_NAME: task3
+
+functions:
+  createCustomer:
+    handler: handler.createCustomer
+    timeout: 30 # Increased timeout
+    vpc:
+      securityGroupIds:
+        - sg-0f17942f8994fc08e
+      subnetIds:
+        - subnet-e646be9d
+    events:
+      - http:
+          path: customers
+          method: post
+
+  getCustomers:
+    handler: handler.getCustomers
+    timeout: 30 # Increased timeout
+    vpc:
+      securityGroupIds:
+        - sg-0f17942f8994fc08e
+      subnetIds:
+        - subnet-e646be9d
+    events:
+      - http:
+          path: customers
+          method: get
+
+  updateCustomer:
+    handler: handler.updateCustomer
+    timeout: 30 # Increased timeout
+    vpc:
+      securityGroupIds:
+        - sg-0f17942f8994fc08e
+      subnetIds:
+        - subnet-e646be9d
+    events:
+      - http:
+          path: customers/{customer_id}
+          method: put
