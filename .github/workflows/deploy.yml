@@ -21,6 +21,12 @@ jobs:
       with:
         node-version: '20.x'
 
+    - name: Install Serverless Framework
+      run: npm install -g serverless@4.1.0
+
+    - name: Log in to Serverless Framework
+      run: serverless login
+
     - name: Install dependencies
       run: npm install
 
