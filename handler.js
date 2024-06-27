@@ -32,55 +32,51 @@ module.exports.createCustomer = async (event) => {
     const body = JSON.parse(event.body);
     const { first_name, last_name, email, phone, address, city, state, postal_code, country } = body;
 
-    const connection = await connectToDatabase();
+    try {
+        const connection = await connectToDatabase();
 
-    const query = 'INSERT INTO crm_customers (first_name, last_name, email, phone, address, city, state, postal_code, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-    const values = [first_name, last_name, email, phone, address, city, state, postal_code, country];
+        const query = 'INSERT INTO crm_customers (first_name, last_name, email, phone, address, city, state, postal_code, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        const values = [first_name, last_name, email, phone, address, city, state, postal_code, country];
 
-    return new Promise((resolve, reject) => {
-        connection.query(query, values, (error, results) => {
-            connection.end(); // Close the connection
-            if (error) {
-                console.error('Error executing query:', error);
-                reject({
-                    statusCode: 500,
-                    body: JSON.stringify({ error: error.message })
-                });
-            } else {
-                console.log('Query executed successfully:', results);
-                resolve({
-                    statusCode: 201,
-                    body: JSON.stringify({ customer_id: results.insertId, ...body })
-                });
-            }
-        });
-    });
+        const results = await executeQuery(connection, query, values);
+
+        console.log('Query executed successfully:', results);
+
+        return {
+            statusCode: 201,
+            body: JSON.stringify({ customer_id: results.insertId, ...body })
+        };
+    } catch (error) {
+        console.error('Error executing query:', error);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: error.message })
+        };
+    }
 };
 
 module.exports.getCustomers = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
-    const connection = await connectToDatabase();
 
-    const query = 'SELECT * FROM crm_customers';
+    try {
+        const connection = await connectToDatabase();
 
-    return new Promise((resolve, reject) => {
-        connection.query(query, (error, results) => {
-            connection.end(); // Close the connection
-            if (error) {
-                console.error('Error executing query:', error);
-                reject({
-                    statusCode: 500,
-                    body: JSON.stringify({ error: error.message })
-                });
-            } else {
-                console.log('Query executed successfully:', results);
-                resolve({
-                    statusCode: 200,
-                    body: JSON.stringify(results)
-                });
-            }
-        });
-    });
+        const query = 'SELECT * FROM crm_customers';
+        const results = await executeQuery(connection, query);
+
+        console.log('Query executed successfully:', results);
+
+        return {
+            statusCode: 200,
+            body: JSON.stringify(results)
+        };
+    } catch (error) {
+        console.error('Error executing query:', error);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: error.message })
+        };
+    }
 };
 
 module.exports.updateCustomer = async (event) => {
@@ -89,26 +85,37 @@ module.exports.updateCustomer = async (event) => {
     const { first_name, last_name, email, phone, address, city, state, postal_code, country } = body;
     const { customer_id } = event.pathParameters;
 
-    const connection = await connectToDatabase();
+    try {
+        const connection = await connectToDatabase();
 
-    const query = 'UPDATE crm_customers SET first_name = ?, last_name = ?, email = ?, phone = ?, address = ?, city = ?, state = ?, postal_code = ?, country = ? WHERE customer_id = ?';
-    const values = [first_name, last_name, email, phone, address, city, state, postal_code, country, customer_id];
+        const query = 'UPDATE crm_customers SET first_name = ?, last_name = ?, email = ?, phone = ?, address = ?, city = ?, state = ?, postal_code = ?, country = ? WHERE customer_id = ?';
+        const values = [first_name, last_name, email, phone, address, city, state, postal_code, country, customer_id];
 
+        const results = await executeQuery(connection, query, values);
+
+        console.log('Query executed successfully:', results);
+
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ customer_id, ...body })
+        };
+    } catch (error) {
+        console.error('Error executing query:', error);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: error.message })
+        };
+    }
+};
+
+const executeQuery = (connection, query, values) => {
     return new Promise((resolve, reject) => {
         connection.query(query, values, (error, results) => {
             connection.end(); // Close the connection
             if (error) {
-                console.error('Error executing query:', error);
-                reject({
-                    statusCode: 500,
-                    body: JSON.stringify({ error: error.message })
-                });
+                reject(error);
             } else {
-                console.log('Query executed successfully:', results);
-                resolve({
-                    statusCode: 200,
-                    body: JSON.stringify({ customer_id, ...body })
-                });
+                resolve(results);
             }
         });
     });

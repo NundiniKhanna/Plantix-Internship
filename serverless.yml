@@ -1,5 +1,4 @@
 org: plantix09
-
 app: aws-node-project
 service: crm-service
 
@@ -7,11 +6,6 @@ provider:
   name: aws
   runtime: nodejs20.x
   region: ap-south-1
-  environment:
-    DB_HOST: database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com
-    DB_USER: admin
-    DB_PASSWORD: 09042002#Nk
-    DB_NAME: task3
 
 functions:
   createCustomer:
@@ -22,6 +16,9 @@ functions:
         - sg-0f17942f8994fc08e
       subnetIds:
         - subnet-e646be9d
+    environment:
+      SECRET_NAME: AppBeta
+      DB_NAME: task3
     events:
       - http:
           path: customers
@@ -35,6 +32,9 @@ functions:
         - sg-0f17942f8994fc08e
       subnetIds:
         - subnet-e646be9d
+    environment:
+      SECRET_NAME: AppBeta
+      DB_NAME: task3
     events:
       - http:
           path: customers
@@ -48,7 +48,47 @@ functions:
         - sg-0f17942f8994fc08e
       subnetIds:
         - subnet-e646be9d
+    environment:
+      SECRET_NAME: AppBeta
+      DB_NAME: task3
     events:
       - http:
           path: customers/{customer_id}
           method: put
+
+  getDatabaseCredentials:
+    handler: handler.getDatabaseCredentials
+    timeout: 30 # Increased timeout
+    vpc:
+      securityGroupIds:
+        - sg-0f17942f8994fc08e
+      subnetIds:
+        - subnet-e646be9d
+    environment:
+      SECRET_NAME: AppBeta
+    events:
+      - schedule:
+          rate: rate(4 hours) # Adjust as per your secret rotation policy
+
+resources:
+  Resources:
+    LambdaExecutionRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Principal:
+                Service: "lambda.amazonaws.com"
+              Action: "sts:AssumeRole"
+        Policies:
+          - PolicyName: "LambdaExecutionPolicy"
+            PolicyDocument:
+              Version: "2012-10-17"
+              Statement:
+                - Effect: "Allow"
+                  Action:
+                    - "secretsmanager:GetSecretValue"
+                    - "secretsmanager:PutSecretValue"
+                  Resource: "*"
