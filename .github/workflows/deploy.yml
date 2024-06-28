@@ -19,10 +19,13 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '20.x'
+        node-version: '18.x' # Updated to match the version used in serverless.yml
 
     - name: Install dependencies
       run: npm install
+
+    - name: Install MySQL and AWS SDK
+      run: npm install mysql @aws-sdk/client-secrets-manager
 
     - name: Deploy to AWS
       run: npx serverless deploy

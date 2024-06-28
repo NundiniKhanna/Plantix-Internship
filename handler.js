@@ -27,7 +27,20 @@ const connectToDatabase = async () => {
     });
 };
 
-module.exports.createCustomer = async (event) => {
+const executeQuery = (connection, query, values) => {
+    return new Promise((resolve, reject) => {
+        connection.query(query, values, (error, results) => {
+            connection.end(); // Close the connection
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};
+
+const createCustomer = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
     const body = JSON.parse(event.body);
     const { first_name, last_name, email, phone, address, city, state, postal_code, country } = body;
@@ -55,7 +68,7 @@ module.exports.createCustomer = async (event) => {
     }
 };
 
-module.exports.getCustomers = async (event) => {
+const getCustomers = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
 
     try {
@@ -79,7 +92,7 @@ module.exports.getCustomers = async (event) => {
     }
 };
 
-module.exports.updateCustomer = async (event) => {
+const updateCustomer = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
     const body = JSON.parse(event.body);
     const { first_name, last_name, email, phone, address, city, state, postal_code, country } = body;
@@ -108,15 +121,9 @@ module.exports.updateCustomer = async (event) => {
     }
 };
 
-const executeQuery = (connection, query, values) => {
-    return new Promise((resolve, reject) => {
-        connection.query(query, values, (error, results) => {
-            connection.end(); // Close the connection
-            if (error) {
-                reject(error);
-            } else {
-                resolve(results);
-            }
-        });
-    });
+module.exports = {
+    createCustomer,
+    getCustomers,
+    updateCustomer,
+    getDatabaseCredentials
 };

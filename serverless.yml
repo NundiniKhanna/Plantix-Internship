@@ -6,19 +6,19 @@ provider:
   name: aws
   runtime: nodejs18.x
   region: ap-south-1
+  environment:
+    SECRET_NAME: AppBeta
+    DB_NAME: task3
 
 functions:
   createCustomer:
     handler: handler.createCustomer
-    timeout: 30 # Increased timeout
+    timeout: 30
     vpc:
       securityGroupIds:
         - sg-0f17942f8994fc08e
       subnetIds:
         - subnet-e646be9d
-    environment:
-      SECRET_NAME: AppBeta
-      DB_NAME: task3
     events:
       - http:
           path: customers
@@ -26,15 +26,12 @@ functions:
 
   getCustomers:
     handler: handler.getCustomers
-    timeout: 30 # Increased timeout
+    timeout: 30
     vpc:
       securityGroupIds:
         - sg-0f17942f8994fc08e
       subnetIds:
         - subnet-e646be9d
-    environment:
-      SECRET_NAME: AppBeta
-      DB_NAME: task3
     events:
       - http:
           path: customers
@@ -42,15 +39,12 @@ functions:
 
   updateCustomer:
     handler: handler.updateCustomer
-    timeout: 30 # Increased timeout
+    timeout: 30
     vpc:
       securityGroupIds:
         - sg-0f17942f8994fc08e
       subnetIds:
         - subnet-e646be9d
-    environment:
-      SECRET_NAME: AppBeta
-      DB_NAME: task3
     events:
       - http:
           path: customers/{customer_id}
@@ -58,17 +52,15 @@ functions:
 
   getDatabaseCredentials:
     handler: handler.getDatabaseCredentials
-    timeout: 30 # Increased timeout
+    timeout: 30
     vpc:
       securityGroupIds:
         - sg-0f17942f8994fc08e
       subnetIds:
         - subnet-e646be9d
-    environment:
-      SECRET_NAME: AppBeta
     events:
       - schedule:
-          rate: rate(4 hours) # Adjust as per your secret rotation policy
+          rate: rate(4 hours)
 
 resources:
   Resources:
