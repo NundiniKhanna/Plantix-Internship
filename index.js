@@ -120,3 +120,21 @@ module.exports.updateCustomer = async (event) => {
         };
     }
 };
+
+module.exports.getDatabaseCredentials = async (event) => {
+    console.log('Received event:', JSON.stringify(event, null, 2));
+
+    try {
+        const dbCredentials = await getDbCredentials(process.env.SECRET_NAME);
+        return {
+            statusCode: 200,
+            body: JSON.stringify(dbCredentials)
+        };
+    } catch (error) {
+        console.error('Error retrieving database credentials:', error);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: error.message })
+        };
+    }
+};
