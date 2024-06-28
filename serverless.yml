@@ -12,7 +12,7 @@ provider:
 
 functions:
   createCustomer:
-    handler: handler.createCustomer
+    handler: index.createCustomer
     timeout: 30
     vpc:
       securityGroupIds:
@@ -25,7 +25,7 @@ functions:
           method: post
 
   getCustomers:
-    handler: handler.getCustomers
+    handler: index.getCustomers
     timeout: 30
     vpc:
       securityGroupIds:
@@ -38,7 +38,7 @@ functions:
           method: get
 
   updateCustomer:
-    handler: handler.updateCustomer
+    handler: index.updateCustomer
     timeout: 30
     vpc:
       securityGroupIds:
@@ -51,7 +51,7 @@ functions:
           method: put
 
   getDatabaseCredentials:
-    handler: handler.getDatabaseCredentials
+    handler: index.getDatabaseCredentials
     timeout: 30
     vpc:
       securityGroupIds:
