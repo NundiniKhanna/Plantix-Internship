@@ -40,7 +40,7 @@ const executeQuery = (connection, query, values) => {
     });
 };
 
-const createCustomer = async (event) => {
+module.exports.createCustomer = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
     const body = JSON.parse(event.body);
     const { first_name, last_name, email, phone, address, city, state, postal_code, country } = body;
@@ -68,7 +68,7 @@ const createCustomer = async (event) => {
     }
 };
 
-const getCustomers = async (event) => {
+module.exports.getCustomers = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
 
     try {
@@ -92,7 +92,7 @@ const getCustomers = async (event) => {
     }
 };
 
-const updateCustomer = async (event) => {
+module.exports.updateCustomer = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
     const body = JSON.parse(event.body);
     const { first_name, last_name, email, phone, address, city, state, postal_code, country } = body;
@@ -119,11 +119,4 @@ const updateCustomer = async (event) => {
             body: JSON.stringify({ error: error.message })
         };
     }
-};
-
-module.exports = {
-    createCustomer,
-    getCustomers,
-    updateCustomer,
-    getDatabaseCredentials
 };
