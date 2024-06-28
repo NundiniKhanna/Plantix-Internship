@@ -9,6 +9,8 @@ provider:
   environment:
     SECRET_NAME: AppBeta
     DB_NAME: task3
+    DB_HOST: database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com
+    DB_USER: admin
 
 functions:
   createCustomer:

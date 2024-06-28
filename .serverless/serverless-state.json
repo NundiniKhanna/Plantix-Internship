@@ -9,10 +9,10 @@
       "runtime": "nodejs20.x",
       "region": "ap-south-1",
       "environment": {
-        "DB_HOST": "database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com",
-        "DB_USER": "admin",
-        "DB_PASSWORD": "09042002#Nk",
-        "DB_NAME": "task3"
+        "DB_HOST"	: "database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com",
+        "DB_NAME"	: "task3",
+        "DB_USER"	: "admin",
+        "SECRET_NAME"	:  "AppBeta"
       },
       "stage": "dev",
       "versionFunctions": true,
