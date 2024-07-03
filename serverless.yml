@@ -73,4 +73,8 @@ resources:
                   Action:
                     - "secretsmanager:GetSecretValue"
                     - "secretsmanager:PutSecretValue"
+                    - "rds:Connect"
+                    - "logs:CreateLogGroup"
+                    - "logs:CreateLogStream"
+                    - "logs:PutLogEvents"
                   Resource: "*"
