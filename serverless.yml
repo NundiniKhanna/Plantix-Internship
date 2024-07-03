@@ -22,7 +22,7 @@ functions:
   createCustomer:
     handler: createCustomer.handler
     timeout: 30
-     vpc:
+    vpc:
       securityGroupIds:
         - sg-0f17942f8994fc08e
       subnetIds:
