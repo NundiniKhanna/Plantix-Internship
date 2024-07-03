@@ -9,9 +9,9 @@ provider:
   environment:
     SECRET_NAME: AppBeta
     DB_NAME: task3
-    host: ${secretsmanager:/aws/reference/secretsmanager/AppBeta/host}
-    username: ${secretsmanager:/aws/reference/secretsmanager/AppBeta/username}
-    password: ${secretsmanager:/aws/reference/secretsmanager/AppBeta/password}
+    host: '' 
+    username: '' 
+    password: '' 
 functions:
   createCustomer:
     handler: index.createCustomer
