@@ -9,9 +9,9 @@ provider:
   environment:
     SECRET_NAME: arn:aws:secretsmanager:ap-south-1:815469512242:secret:AppBeta-STZ4Lo
     DB_NAME: task3
-    host: ${ssm:/aws/reference/secretsmanager/AppBeta:host}
-    username: ${ssm:/aws/reference/secretsmanager/AppBeta:username}
-    password: ${ssm:/aws/reference/secretsmanager/AppBeta:password}
+    host: ${ssm:arn:aws:secretsmanager:ap-south-1:815469512242:secret:AppBeta-STZ4Lo/host}
+    username: ${ssm:arn:aws:secretsmanager:ap-south-1:815469512242:secret:AppBeta-STZ4Lo/username}
+    password: ${ssm:arn:aws:secretsmanager:ap-south-1:815469512242:secret:AppBeta-STZ4Lo/password}
 
 
 functions:
