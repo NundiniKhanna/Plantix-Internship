@@ -87,3 +87,9 @@ resources:
                     - "logs:CreateLogStream"
                     - "logs:PutLogEvents"
                   Resource: "*"
+
+package:
+  include:
+    - createCustomer.js
+    - getCustomers.js
+    - updateCustomer.js
