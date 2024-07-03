@@ -6,12 +6,10 @@
     },
     "provider": {
       "name": "aws",
-      "runtime": "nodejs20.x",
+      "runtime": "nodejs18.x",
       "region": "ap-south-1",
       "environment": {
-        "DB_HOST"	: "database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com",
         "DB_NAME"	: "task3",
-        "DB_USER"	: "admin",
         "SECRET_NAME"	:  "AppBeta"
       },
       "stage": "dev",
