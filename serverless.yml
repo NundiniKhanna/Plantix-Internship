@@ -9,9 +9,10 @@ provider:
   environment:
     SECRET_NAME: ${ssm:/aws/reference/secretsmanager/AppBeta}
     DB_NAME: task3
-    DB_HOST: database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com
-    DB_USER: ${ssm:/aws/reference/secretsmanager/AppBeta:DB_USER}
-    DB_PASSWORD: ${ssm:/aws/reference/secretsmanager/AppBeta:DB_PASSWORD}
+    DB_HOST: ${ssm:/aws/reference/secretsmanager/AppBeta:host}
+    DB_USER: ${ssm:/aws/reference/secretsmanager/AppBeta:username}
+    DB_PASSWORD: ${ssm:/aws/reference/secretsmanager/AppBeta:password}
+
 
 functions:
   createCustomer:

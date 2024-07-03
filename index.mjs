@@ -11,14 +11,15 @@ const getDbCredentials = async (secretName) => {
     const secretValue = JSON.parse(response.SecretString);
     return {
         user: secretValue.username,
-        password: secretValue.password
+        password: secretValue.password,
+        host: secretValue.host
     };
 };
 
 const connectToDatabase = async () => {
     const dbCredentials = await getDbCredentials(process.env.SECRET_NAME);
     return mysql.createConnection({
-        host: process.env.DB_HOST,
+        host: dbCredentials.host,
         user: dbCredentials.user,
         password: dbCredentials.password,
         database: process.env.DB_NAME
