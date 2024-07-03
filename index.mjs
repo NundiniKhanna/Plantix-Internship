@@ -10,33 +10,18 @@ const getDbCredentials = async (secretName) => {
     const response = await secretsManagerClient.send(command);
     const secretValue = JSON.parse(response.SecretString);
     return {
-        host: secretValue.host,
         user: secretValue.username,
-        password: secretValue.password,
-        database: secretValue.dbname
+        password: secretValue.password
     };
 };
 
 const connectToDatabase = async () => {
     const dbCredentials = await getDbCredentials(process.env.SECRET_NAME);
     return mysql.createConnection({
-        host: dbCredentials.host,
+        host: process.env.DB_HOST,
         user: dbCredentials.user,
         password: dbCredentials.password,
-        database: dbCredentials.database
-    });
-};
-
-const executeQuery = (connection, query, values) => {
-    return new Promise((resolve, reject) => {
-        connection.query(query, values, (error, results) => {
-            connection.end(); // Close the connection
-            if (error) {
-                reject(error);
-            } else {
-                resolve(results);
-            }
-        });
+        database: process.env.DB_NAME
     });
 };
 
@@ -121,20 +106,15 @@ module.exports.updateCustomer = async (event) => {
     }
 };
 
-module.exports.getDatabaseCredentials = async (event) => {
-    console.log('Received event:', JSON.stringify(event, null, 2));
-
-    try {
-        const dbCredentials = await getDbCredentials(process.env.SECRET_NAME);
-        return {
-            statusCode: 200,
-            body: JSON.stringify(dbCredentials)
-        };
-    } catch (error) {
-        console.error('Error retrieving database credentials:', error);
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: error.message })
-        };
-    }
+const executeQuery = (connection, query, values) => {
+    return new Promise((resolve, reject) => {
+        connection.query(query, values, (error, results) => {
+            connection.end(); // Close the connection
+            if (error) {
+                reject(error);
+            } else {
+                resolve(results);
+            }
+        });
+    });
 };

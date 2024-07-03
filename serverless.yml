@@ -7,10 +7,11 @@ provider:
   runtime: nodejs18.x
   region: ap-south-1
   environment:
-    SECRET_NAME: AppBeta
+    SECRET_NAME: ${ssm:/aws/reference/secretsmanager/AppBeta}
     DB_NAME: task3
     DB_HOST: database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com
-    DB_USER: admin
+    DB_USER: ${ssm:/aws/reference/secretsmanager/AppBeta:DB_USER}
+    DB_PASSWORD: ${ssm:/aws/reference/secretsmanager/AppBeta:DB_PASSWORD}
 
 functions:
   createCustomer:
@@ -51,18 +52,6 @@ functions:
       - http:
           path: customers/{customer_id}
           method: put
-
-  getDatabaseCredentials:
-    handler: index.getDatabaseCredentials
-    timeout: 30
-    vpc:
-      securityGroupIds:
-        - sg-0f17942f8994fc08e
-      subnetIds:
-        - subnet-e646be9d
-    events:
-      - schedule:
-          rate: rate(4 hours)
 
 resources:
   Resources:
