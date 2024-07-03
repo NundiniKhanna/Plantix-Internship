@@ -7,7 +7,7 @@ provider:
   runtime: nodejs18.x
   region: ap-south-1
   environment:
-    SECRET_NAME: ${ssm:/aws/reference/secretsmanager/AppBeta}
+    SECRET_NAME: AppBeta
     DB_NAME: task3
     host: ${ssm:/aws/reference/secretsmanager/AppBeta:host}
     username: ${ssm:/aws/reference/secretsmanager/AppBeta:username}
