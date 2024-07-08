@@ -23,7 +23,7 @@ provider:
 
 functions:
   createCustomer:
-    handler: createCustomer.handler
+    handler: index.createCustomerHandler
     timeout: 30
     vpc:
       securityGroupIds:
@@ -36,7 +36,7 @@ functions:
           method: post
 
   getCustomers:
-    handler: getCustomers.handler
+    handler: index.getCustomersHandler
     timeout: 30
     vpc:
       securityGroupIds:
@@ -49,7 +49,7 @@ functions:
           method: get
 
   updateCustomer:
-    handler: updateCustomer.handler
+    handler: index.updateCustomerHandler
     timeout: 30
     vpc:
       securityGroupIds:
@@ -90,6 +90,4 @@ resources:
 
 package:
   include:
-    - createCustomer.js
-    - getCustomers.js
-    - updateCustomer.js
+    - index.js
