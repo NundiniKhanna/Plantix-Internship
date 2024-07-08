@@ -9,8 +9,22 @@
       "runtime": "nodejs18.x",
       "region": "ap-south-1",
       "environment": {
-        "DB_NAME"	: "task3",
-        "SECRET_NAME"	:  "AppBeta"
+        "SECRET_NAME": "AppBeta",
+        "DB_NAME": "task3",
+        "db_username": "admin",
+        "db_password": "14!!QlL2IPAUJWXZ",
+        "db_engine": "mysql",
+        "db_host": "database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com",
+        "db_port": "3306",
+        "db_dbInstanceIdentifier": "database-task-3"
+      },
+      "vpc": {
+        "securityGroupIds": [
+          "sg-0f17942f8994fc08e"
+        ],
+        "subnetIds": [
+          "subnet-e646be9d"
+        ]
       },
       "stage": "dev",
       "versionFunctions": true,
@@ -204,19 +218,23 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/crm-service/dev/1718712501010-2024-06-18T12:08:21.010Z/crm-service.zip"
+                "S3Key": "serverless/crm-service/dev/1720426369324-2024-07-08T08:12:49.324Z/crm-service.zip"
               },
-              "Handler": "handler.createCustomer",
-              "Runtime": "nodejs20.x",
+              "Handler": "index.createCustomerHandler",
+              "Runtime": "nodejs18.x",
               "FunctionName": "crm-service-dev-createCustomer",
               "MemorySize": 1024,
               "Timeout": 30,
               "Environment": {
                 "Variables": {
-                  "DB_HOST": "database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com",
-                  "DB_USER": "admin",
-                  "DB_PASSWORD": "09042002#Nk",
-                  "DB_NAME": "task3"
+                  "SECRET_NAME": "AppBeta",
+                  "DB_NAME": "task3",
+                  "db_username": "admin",
+                  "db_password": "14!!QlL2IPAUJWXZ",
+                  "db_engine": "mysql",
+                  "db_host": "database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com",
+                  "db_port": "3306",
+                  "db_dbInstanceIdentifier": "database-task-3"
                 }
               },
               "Role": {
@@ -245,19 +263,23 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/crm-service/dev/1718712501010-2024-06-18T12:08:21.010Z/crm-service.zip"
+                "S3Key": "serverless/crm-service/dev/1720426369324-2024-07-08T08:12:49.324Z/crm-service.zip"
               },
-              "Handler": "handler.getCustomers",
-              "Runtime": "nodejs20.x",
+              "Handler": "index.getCustomersHandler",
+              "Runtime": "nodejs18.x",
               "FunctionName": "crm-service-dev-getCustomers",
               "MemorySize": 1024,
               "Timeout": 30,
               "Environment": {
                 "Variables": {
-                  "DB_HOST": "database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com",
-                  "DB_USER": "admin",
-                  "DB_PASSWORD": "09042002#Nk",
-                  "DB_NAME": "task3"
+                  "SECRET_NAME": "AppBeta",
+                  "DB_NAME": "task3",
+                  "db_username": "admin",
+                  "db_password": "14!!QlL2IPAUJWXZ",
+                  "db_engine": "mysql",
+                  "db_host": "database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com",
+                  "db_port": "3306",
+                  "db_dbInstanceIdentifier": "database-task-3"
                 }
               },
               "Role": {
@@ -286,19 +308,23 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/crm-service/dev/1718712501010-2024-06-18T12:08:21.010Z/crm-service.zip"
+                "S3Key": "serverless/crm-service/dev/1720426369324-2024-07-08T08:12:49.324Z/crm-service.zip"
               },
-              "Handler": "handler.updateCustomer",
-              "Runtime": "nodejs20.x",
+              "Handler": "index.updateCustomerHandler",
+              "Runtime": "nodejs18.x",
               "FunctionName": "crm-service-dev-updateCustomer",
               "MemorySize": 1024,
               "Timeout": 30,
               "Environment": {
                 "Variables": {
-                  "DB_HOST": "database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com",
-                  "DB_USER": "admin",
-                  "DB_PASSWORD": "09042002#Nk",
-                  "DB_NAME": "task3"
+                  "SECRET_NAME": "AppBeta",
+                  "DB_NAME": "task3",
+                  "db_username": "admin",
+                  "db_password": "14!!QlL2IPAUJWXZ",
+                  "db_engine": "mysql",
+                  "db_host": "database-task-3.cjooxentiz3z.ap-south-1.rds.amazonaws.com",
+                  "db_port": "3306",
+                  "db_dbInstanceIdentifier": "database-task-3"
                 }
               },
               "Role": {
@@ -320,34 +346,34 @@
               "UpdateCustomerLogGroup"
             ]
           },
-          "CreateCustomerLambdaVersionZtm7fZljBxv185Y3dUMwYrIl5ZYAdn1ESe6cPJoc": {
+          "CreateCustomerLambdaVersionO0kFxCxEVpzTXMRg1f2uj8oEOPAm6lTYtkrBG1JO3M": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateCustomerLambdaFunction"
               },
-              "CodeSha256": "GU2f0MRx7Sq1Zqbr9TOSLrafqQVUuyzo/zGDVia+8vc="
+              "CodeSha256": "tCxrKmNX+ytzB58r8cnLDAF/noBUwcoKc1i1VeGcrgk="
             }
           },
-          "GetCustomersLambdaVersionSB9eqibGoWoaO4WIUz3QXIapgx4ZXbEzs2Rkv483c": {
+          "GetCustomersLambdaVersiongn9P4lzOnwAG6Jbm6QbeaXMd37sYktQUwkUqQYPtLw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetCustomersLambdaFunction"
               },
-              "CodeSha256": "GU2f0MRx7Sq1Zqbr9TOSLrafqQVUuyzo/zGDVia+8vc="
+              "CodeSha256": "tCxrKmNX+ytzB58r8cnLDAF/noBUwcoKc1i1VeGcrgk="
             }
           },
-          "UpdateCustomerLambdaVersionfHDbB1HYHrjtRVmRe8fYT1rvMabL0FX4vvMxXDYfzA": {
+          "UpdateCustomerLambdaVersionAsAaKtXgVWf48jIuwbCuGpbp29zhi7V3FU2m0Fs6pWc": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "UpdateCustomerLambdaFunction"
               },
-              "CodeSha256": "GU2f0MRx7Sq1Zqbr9TOSLrafqQVUuyzo/zGDVia+8vc="
+              "CodeSha256": "tCxrKmNX+ytzB58r8cnLDAF/noBUwcoKc1i1VeGcrgk="
             }
           },
           "ApiGatewayRestApi": {
@@ -527,7 +553,7 @@
               "UpdateCustomerLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1718712498849": {
+          "ApiGatewayDeployment1720426362935": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -651,6 +677,45 @@
                 ]
               }
             }
+          },
+          "LambdaExecutionRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "lambda.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                  }
+                ]
+              },
+              "Policies": [
+                {
+                  "PolicyName": "LambdaExecutionPolicy",
+                  "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "secretsmanager:GetSecretValue",
+                          "secretsmanager:PutSecretValue",
+                          "rds:Connect",
+                          "logs:CreateLogGroup",
+                          "logs:CreateLogStream",
+                          "logs:PutLogEvents"
+                        ],
+                        "Resource": "*"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
           }
         },
         "Outputs": {
@@ -665,7 +730,7 @@
           "CreateCustomerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateCustomerLambdaVersionZtm7fZljBxv185Y3dUMwYrIl5ZYAdn1ESe6cPJoc"
+              "Ref": "CreateCustomerLambdaVersionO0kFxCxEVpzTXMRg1f2uj8oEOPAm6lTYtkrBG1JO3M"
             },
             "Export": {
               "Name": "sls-crm-service-dev-CreateCustomerLambdaFunctionQualifiedArn"
@@ -674,7 +739,7 @@
           "GetCustomersLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetCustomersLambdaVersionSB9eqibGoWoaO4WIUz3QXIapgx4ZXbEzs2Rkv483c"
+              "Ref": "GetCustomersLambdaVersiongn9P4lzOnwAG6Jbm6QbeaXMd37sYktQUwkUqQYPtLw"
             },
             "Export": {
               "Name": "sls-crm-service-dev-GetCustomersLambdaFunctionQualifiedArn"
@@ -683,7 +748,7 @@
           "UpdateCustomerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "UpdateCustomerLambdaVersionfHDbB1HYHrjtRVmRe8fYT1rvMabL0FX4vvMxXDYfzA"
+              "Ref": "UpdateCustomerLambdaVersionAsAaKtXgVWf48jIuwbCuGpbp29zhi7V3FU2m0Fs6pWc"
             },
             "Export": {
               "Name": "sls-crm-service-dev-UpdateCustomerLambdaFunctionQualifiedArn"
@@ -798,13 +863,12 @@
             }
           }
         }
-      },
-      "vpc": {}
+      }
     },
     "pluginsData": {},
     "functions": {
       "createCustomer": {
-        "handler": "handler.createCustomer",
+        "handler": "index.createCustomerHandler",
         "timeout": 30,
         "vpc": {
           "securityGroupIds": {
@@ -826,11 +890,11 @@
         "name": "crm-service-dev-createCustomer",
         "package": {},
         "memory": 1024,
-        "runtime": "nodejs20.x",
-        "versionLogicalId": "CreateCustomerLambdaVersionZtm7fZljBxv185Y3dUMwYrIl5ZYAdn1ESe6cPJoc"
+        "runtime": "nodejs18.x",
+        "versionLogicalId": "CreateCustomerLambdaVersionO0kFxCxEVpzTXMRg1f2uj8oEOPAm6lTYtkrBG1JO3M"
       },
       "getCustomers": {
-        "handler": "handler.getCustomers",
+        "handler": "index.getCustomersHandler",
         "timeout": 30,
         "vpc": {
           "securityGroupIds": {
@@ -852,11 +916,11 @@
         "name": "crm-service-dev-getCustomers",
         "package": {},
         "memory": 1024,
-        "runtime": "nodejs20.x",
-        "versionLogicalId": "GetCustomersLambdaVersionSB9eqibGoWoaO4WIUz3QXIapgx4ZXbEzs2Rkv483c"
+        "runtime": "nodejs18.x",
+        "versionLogicalId": "GetCustomersLambdaVersiongn9P4lzOnwAG6Jbm6QbeaXMd37sYktQUwkUqQYPtLw"
       },
       "updateCustomer": {
-        "handler": "handler.updateCustomer",
+        "handler": "index.updateCustomerHandler",
         "timeout": 30,
         "vpc": {
           "securityGroupIds": {
@@ -878,14 +942,58 @@
         "name": "crm-service-dev-updateCustomer",
         "package": {},
         "memory": 1024,
-        "runtime": "nodejs20.x",
-        "versionLogicalId": "UpdateCustomerLambdaVersionfHDbB1HYHrjtRVmRe8fYT1rvMabL0FX4vvMxXDYfzA"
+        "runtime": "nodejs18.x",
+        "versionLogicalId": "UpdateCustomerLambdaVersionAsAaKtXgVWf48jIuwbCuGpbp29zhi7V3FU2m0Fs6pWc"
       }
+    },
+    "resources": {
+      "Resources": {
+        "LambdaExecutionRole": {
+          "Type": "AWS::IAM::Role",
+          "Properties": {
+            "AssumeRolePolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Principal": {
+                    "Service": "lambda.amazonaws.com"
+                  },
+                  "Action": "sts:AssumeRole"
+                }
+              ]
+            },
+            "Policies": [
+              {
+                "PolicyName": "LambdaExecutionPolicy",
+                "PolicyDocument": {
+                  "Version": "2012-10-17",
+                  "Statement": [
+                    {
+                      "Effect": "Allow",
+                      "Action": [
+                        "secretsmanager:GetSecretValue",
+                        "secretsmanager:PutSecretValue",
+                        "rds:Connect",
+                        "logs:CreateLogGroup",
+                        "logs:CreateLogStream",
+                        "logs:PutLogEvents"
+                      ],
+                      "Resource": "*"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      },
+      "Outputs": {}
     },
     "configValidationMode": "warn",
     "serviceFilename": "serverless.yml",
     "initialServerlessConfig": {
-      "org": "nundini",
+      "org": "plantix09",
       "app": "aws-node-project",
       "service": "crm-service",
       "provider": {
@@ -893,17 +1001,28 @@
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
+      },
+      "resources": {
+        "$ref": "$[\"service\"][\"resources\"]"
+      },
+      "package": {
+        "include": [
+          "index.js"
+        ],
+        "artifactsS3KeyDirname": "serverless/crm-service/dev/code-artifacts",
+        "artifact": "E:\\ServerlessProject\\.serverless\\crm-service.zip",
+        "artifactDirectoryName": "serverless/crm-service/dev/1720426369324-2024-07-08T08:12:49.324Z"
       }
     },
     "app": "aws-node-project",
     "appId": null,
-    "org": "nundini",
+    "org": "plantix09",
     "orgId": null,
     "layers": {},
     "artifact": "E:\\ServerlessProject\\.serverless\\crm-service.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/crm-service/dev/1718712501010-2024-06-18T12:08:21.010Z",
+    "artifactDirectoryName": "serverless/crm-service/dev/1720426369324-2024-07-08T08:12:49.324Z",
     "artifact": "crm-service.zip"
   }
 }
