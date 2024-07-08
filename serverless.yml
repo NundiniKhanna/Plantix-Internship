@@ -9,9 +9,12 @@ provider:
   environment:
     SECRET_NAME: AppBeta
     DB_NAME: task3
-    host: ''
-    username: ''
-    password: ''
+    db_username: ${ssm:/project/aws-node/db_username}
+    db_password: ${ssm:/project/aws-node/db_password}
+    db_engine: ${ssm:/project/aws-node/db_engine}
+    db_host: ${ssm:/project/aws-node/db_host}
+    db_port: ${ssm:/project/aws-node/db_port}
+    db_dbInstanceIdentifier: ${ssm:/project/aws-node/db_dbInstanceIdentifier}
   vpc:
     securityGroupIds:
       - sg-0f17942f8994fc08e
@@ -27,7 +30,6 @@ functions:
         - sg-0f17942f8994fc08e
       subnetIds:
         - subnet-e646be9d
-
     events:
       - http:
           path: customers
@@ -41,7 +43,6 @@ functions:
         - sg-0f17942f8994fc08e
       subnetIds:
         - subnet-e646be9d
-
     events:
       - http:
           path: customers
@@ -55,7 +56,6 @@ functions:
         - sg-0f17942f8994fc08e
       subnetIds:
         - subnet-e646be9d
-
     events:
       - http:
           path: customers/{customer_id}

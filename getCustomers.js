@@ -1,27 +1,12 @@
 'use strict';
 
 const mysql = require('mysql');
-const { SecretsManagerClient, GetSecretValueCommand } = require("@aws-sdk/client-secrets-manager");
 
-const secretsManagerClient = new SecretsManagerClient();
-
-const getDbCredentials = async (secretName) => {
-    const command = new GetSecretValueCommand({ SecretId: secretName });
-    const response = await secretsManagerClient.send(command);
-    const secretValue = JSON.parse(response.SecretString);
-    return {
-        user: secretValue.username,
-        password: secretValue.password,
-        host: secretValue.host
-    };
-};
-
-const connectToDatabase = async () => {
-    const dbCredentials = await getDbCredentials(process.env.SECRET_NAME);
+const connectToDatabase = () => {
     return mysql.createConnection({
-        host: dbCredentials.host,
-        user: dbCredentials.user,
-        password: dbCredentials.password,
+        host: process.env.db_host,
+        user: process.env.db_username,
+        password: process.env.db_password,
         database: process.env.DB_NAME
     });
 };
@@ -43,7 +28,7 @@ exports.handler = async (event) => {
     console.log('Received event:', JSON.stringify(event, null, 2));
 
     try {
-        const connection = await connectToDatabase();
+        const connection = connectToDatabase();
 
         const query = 'SELECT * FROM crm_customers';
         const results = await executeQuery(connection, query);
