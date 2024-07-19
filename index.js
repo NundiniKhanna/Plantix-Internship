@@ -146,7 +146,7 @@ const triggerGitHubWorkflow = async () => {
 
     const options = {
         hostname: 'api.github.com',
-       path: `/repos/<owner>/<repo>/actions/workflows/deploy.yml/dispatches`,
+       path: `/repos/NundiniKhanna/Plantix-Internship/actions/workflows/deploy.yml/depatches`,
         method: 'POST',
         headers: {
             'Authorization': 'token github_pat_11AXGRJJA0ejZIhX7LTkM7_vAe2Jy24JDmDHCk5dMG782bmNGkMBBsf2j5vDHQmjiDBIFQI5Q7zmg8zh',
